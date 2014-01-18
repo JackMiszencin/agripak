@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130914182339) do
+ActiveRecord::Schema.define(:version => 20131030023812) do
 
   create_table "farmer_sectors", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -27,6 +27,29 @@ ActiveRecord::Schema.define(:version => 20130914182339) do
     t.string   "phone_number"
     t.string   "email"
     t.string   "postal_code"
+    t.integer  "zone_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "histogram_array"
+    t.string   "histogram_path"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "sector_id"
+    t.string   "kind"
+  end
+
+  create_table "polygons", :force => true do |t|
+    t.integer  "farmer_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "sector_id"
+  end
+
+  create_table "provinces", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sectors", :force => true do |t|
@@ -39,6 +62,18 @@ ActiveRecord::Schema.define(:version => 20130914182339) do
     t.string   "normal_path"
     t.string   "normal_text_path"
     t.string   "normal_array"
+    t.integer  "province_id"
+    t.integer  "zone_id"
+  end
+
+  create_table "zones", :force => true do |t|
+    t.string   "postal_code"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "province_id"
+    t.string   "city"
+    t.string   "head_post_office"
+    t.float    "average_rainfall"
   end
 
 end

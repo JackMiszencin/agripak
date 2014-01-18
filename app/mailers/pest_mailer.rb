@@ -3,7 +3,7 @@ class PestMailer < ActionMailer::Base
 
   def warn(user, count)
   	@count = count
-  	mail(:to => "#{user.name} <#{user.email}>", :subject => "Pest Alert") do |format|
+  	mail(:to => "#{user.name} <#{user.email}>", :subject => "The land is too damn dry!!!") do |format|
   		format.text { render "/pest_mailer/pest_text" }
   	end
   end

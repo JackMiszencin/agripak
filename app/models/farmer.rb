@@ -1,8 +1,9 @@
 class Farmer < ActiveRecord::Base
 	has_many :farmer_sectors
 	has_many :sectors, :through => :farmer_sectors
-
-	attr_accessible :name, :postal_code, :email, :phone_number
+	belongs_to :zone
+	has_one :province, :through => :zone
+	attr_accessible :name, :postal_code, :email, :phone_number, :zone_id
 
 	def load_sector(s)
 		f = self.farmer_sectors.create
